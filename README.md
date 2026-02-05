@@ -1,24 +1,48 @@
-<center>
+<div align="center">
+
 # Itemize
 
-### 🚀 A lightweight Laravel + Inertia + Vue starter for product catalogs and item management
-</center>
+**A lightweight Laravel + Inertia + Vue starter for product catalogs and item management**
 
-<center>
-[![PHP](https://img.shields.io/badge/PHP-^8.2-8892BF?logo=php&logoColor=white)](https://www.php.net/) [![Laravel](https://img.shields.io/badge/Laravel-^12-FF2D20?logo=laravel&logoColor=white)](https://laravel.com/) [![Node](https://img.shields.io/badge/Node-18%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/) [![Vite](https://img.shields.io/badge/Vite-^7-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/) [![Postgres](https://img.shields.io/badge/Postgres-15-336791?logo=postgresql&logoColor=white)](https://www.postgresql.org/) [![License](https://img.shields.io/badge/License-MIT-00ADEF)](LICENSE)
-</center>
+<!-- Badges -->
+<p align="center">
+  <a href="https://www.php.net/"><img src="https://img.shields.io/badge/PHP-^8.2-8892BF?logo=php&logoColor=white" alt="PHP"></a>
+  <a href="https://laravel.com/"><img src="https://img.shields.io/badge/Laravel-^12-FF2D20?logo=laravel&logoColor=white" alt="Laravel"></a>
+  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node-18%2B-339933?logo=node.js&logoColor=white" alt="Node"></a>
+  <a href="https://vitejs.dev/"><img src="https://img.shields.io/badge/Vite-^7-646CFF?logo=vite&logoColor=white" alt="Vite"></a>
+  <a href="https://www.postgresql.org/"><img src="https://img.shields.io/badge/Postgres-15-336791?logo=postgresql&logoColor=white" alt="Postgres"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow" alt="License"></a>
+</p>
+
+<p align="center">
+  � <b>Live Demo deployed on DigitalOcean (Traefik Gateway + Docker Compose)</b>
+</p>
+
+</div>
 
 ---
 
-## 📸 Live Demo / Screenshots
+## 🖥️ Live Demo
 
-- Live demo: [itemize.tonys-dev.com](https://itemize.tonys-dev.com)
-- Screenshots:
-  
-  ![Dashboard Overview](assets/dashboard_overview.png)
-  ![Product Inventory](assets/product_list.png)
-  ![Product Detailed Form](assets/product_form.png)
-  ![Gallery Lightbox](assets/product_gallery.png)
+Live URL here:
+
+```
+https://itemize.tonys-dev.com
+```
+
+---
+
+## Screenshots
+
+<p align="center">
+  <img src="assets/dashboard_overview.png" alt="Dashboard Overview" width="600"/>
+  <br>
+  <img src="assets/product_list.png" alt="Product Inventory" width="600"/>
+  <br>
+  <img src="assets/product_form.png" alt="Product Detailed Form" width="600"/>
+  <br>
+  <img src="assets/product_gallery.png" alt="Gallery Lightbox" width="600"/>
+</p>
 
 ---
 
@@ -308,18 +332,3 @@ This project is licensed under the MIT License — see `LICENSE`.
 - Antonio Santiago (TonyS-dev)
 - GitHub: https://github.com/TonyS-dev
 - Email: santiagor.acarlos@gmail.com
-
----
-
-## Appendix — Useful file references
-
-- Docker: `Dockerfile`, `docker-compose.yml`
-- Frontend: `resources/js/`, `vite.config.ts`, `tsconfig.json`, `package.json`
-- Backend: `app/`, `routes/web.php`, `routes/api.php`, `composer.json`
-- Tests: `tests/`, `phpunit.xml`
-
-
-If you want, I can also:
-- Add a `docs/` folder with example screenshots and an API reference extracted from controllers
-- Add a short `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md`
-
