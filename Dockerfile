@@ -35,7 +35,12 @@ RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
+# Copy application code
+COPY --chown=$user:$user . /var/www
+
+# Install dependencies
 USER $user
+RUN composer install --no-dev --optimize-autoloader
 
 # Expose port (8000 for Artisan serve, 5173 for Vite)
 EXPOSE 8000
