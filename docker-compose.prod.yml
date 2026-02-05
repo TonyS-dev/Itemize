@@ -19,7 +19,8 @@ services:
       APP_DEBUG: 'false'
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.itemize.rule=Host(`${DOMAIN_NAME}`)"
+      - "traefik.docker.network=proxy_network"
+      - "traefik.http.routers.itemize.rule=Host(`itemize.tonys-dev.com`)"
       - "traefik.http.routers.itemize.entrypoints=websecure"
       - "traefik.http.routers.itemize.tls.certresolver=myresolver"
       - "traefik.http.services.itemize.loadbalancer.server.port=8000"

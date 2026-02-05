@@ -1,50 +1,32 @@
 FROM php:8.4-fpm
 
-# Arguments defined in docker-compose.yml
-ARG user
-ARG uid
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip \
-    libpq-dev \
-    nodejs \
-    npm \
-    procps
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install PHP extensions
-RUN docker-php-ext-install pdo_pgsql mbstring exif pcntl bcmath gd
-
-# Get latest Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Set working directory
 WORKDIR /var/www
 
-# Create system user to run Composer and Artisan Commands
-RUN useradd -G www-data,root -u $uid -d /home/$user $user
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
+# 1. Instalar dependencias del sistema y Node.js 22
+RUN apt-get update && apt-get install -y \
+    git curl libpng-dev libonig-dev libxml2-dev zip unzip libpq-dev && \
+    curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
+    apt-get install -y nodejs
 
-# Copy application code
-COPY --chown=$user:$user . /var/www
+# 2. Instalar extensiones PHP
+RUN docker-php-ext-install pdo_pgsql mbstring exif pcntl bcmath gd
 
-# Install dependencies
-USER $user
+# 3. Copiar Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# 4. Copiar código
+COPY . .
+
+# 5. Instalar dependencias (PHP primero para que artisan funcione)
 RUN composer install --no-dev --optimize-autoloader
 
-# Expose port (8000 for Artisan serve, 5173 for Vite)
-EXPOSE 8000
-EXPOSE 5173
+# 6. Construir Frontend (Ahora sí funcionará porque tiene PHP y Node 22)
+RUN npm ci
+RUN npm run build
 
-# Default command matches "composer run dev" behavior but can be overridden
+# 7. Permisos y usuario
+RUN chown -R www-data:www-data /var/www
+USER www-data
+
+EXPOSE 8000
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
